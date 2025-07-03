@@ -1,11 +1,11 @@
 CREATE TABLE estudantes(
-	nome VARCHAR(50),
+	nome VARCHAR(50) NOT NULL,
 	matricula VARCHAR(50) PRIMARY KEY,
-	email VARCHAR(50)
+	email VARCHAR(50) NOT NULL UNIQUE
 );
 CREATE TABLE livros(
-	titulo VARCHAR(50),
-	autor VARCHAR(50),
+	titulo VARCHAR(50) NOT NULL,
+	autor VARCHAR(50) NOT NULL,
 	isbn VARCHAR(50) PRIMARY KEY
 );
 
@@ -27,8 +27,8 @@ CREATE TABLE estudantes_exemplares(
 );
 
 CREATE TABLE cartoes(
-	num INT PRIMARY KEY,
-	dt_emissao DATE,
+	num SERIAL PRIMARY KEY,
+	dt_emissao DATE DEFAULT CURRENT_DATE,
 	FK_estudantes_matricula VARCHAR(50),
 	FOREIGN KEY(FK_estudantes_matricula) REFERENCES estudantes(matricula)
 );
