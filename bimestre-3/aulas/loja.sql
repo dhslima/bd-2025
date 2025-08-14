@@ -1,5 +1,5 @@
 CREATE TABLE cliente(
-	cod_cliente INT SERIAL,
+	cod_cliente SERIAL,
     nome VARCHAR(100) NOT NULL,
     cidade VARCHAR(60),
     cep VARCHAR(9),
@@ -8,23 +8,23 @@ CREATE TABLE cliente(
 );
 
 CREATE TABLE vendedor(
-	cod_vendedor INT SERIAL,
+	cod_vendedor SERIAL,
     nome VARCHAR(100) NOT NULL,
-    salario_fixo DOUBLE,
+    salario_fixo DECIMAL(10,2),
     faixa_comissao VARCHAR(1),
     PRIMARY KEY(cod_vendedor)
 );
 
 CREATE TABLE produto(
-	cod_produto INT SERIAL,
+	cod_produto SERIAL,
     descricao VARCHAR(200),
     nome VARCHAR(50),
-    valor_unitario DOUBLE,
+    valor_unitario DECIMAL(10,2),
     PRIMARY KEY(cod_produto)
 );
 
 CREATE TABLE pedido(
-	num_pedido INT SERIAL,
+	num_pedido SERIAL,
     prazo_entrega INT NOT NULL,
     FK_cod_cliente INT,
     FK_cod_vendedor INT,
