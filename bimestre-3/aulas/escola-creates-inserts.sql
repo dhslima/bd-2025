@@ -22,16 +22,18 @@ CREATE TABLE turmas (
 CREATE TABLE matriculas (
   	id SERIAL PRIMARY KEY,
   	FK_aluno_id INTEGER NOT NULL REFERENCES alunos(id),
-  	FK_turma_id INTEGER NOT NULL REFERENCES turmas(id),
+  	FK_turma_id INTEGER,
   	data DATE NOT NULL,
-  	status VARCHAR(20) NOT NULL
+  	status VARCHAR(20) NOT NULL,
+	FOREIGN KEY(FK_turma_id) REFERENCES turmas(id)
 );
 
 CREATE TABLE avaliacoes (
   	id SERIAL PRIMARY KEY,
-  	FK_matricula_id INTEGER NOT NULL REFERENCES matriculas(id),
+  	FK_matricula_id INTEGER,
   	tipo VARCHAR(20) NOT NULL,
-  	nota NUMERIC(4,1) NOT NULL
+  	nota NUMERIC(4,1) NOT NULL,
+	FOREIGN KEY(FK_matricula_id) REFERENCES matriculas(id)
 );
 
 INSERT INTO alunos (nome, cidade, nascimento) VALUES
