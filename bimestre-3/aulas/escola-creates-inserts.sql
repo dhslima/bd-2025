@@ -14,9 +14,10 @@ CREATE TABLE cursos (
 
 CREATE TABLE turmas (
   	id SERIAL PRIMARY KEY,
-  	FK_curso_id INTEGER NOT NULL REFERENCES cursos(id),
+  	FK_curso_id INTEGER,
   	ano INTEGER NOT NULL,
-  	semestre INTEGER NOT NULL
+  	semestre INTEGER NOT NULL,
+	FOREIGN KEY(FK_curso_id) REFERENCES cursos(id)
 );
 
 CREATE TABLE matriculas (
