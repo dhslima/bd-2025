@@ -14,6 +14,13 @@ SELECT id FROM cursos WHERE titulo = 'SQL para Iniciantes'))) ORDER BY nome;
 SELECT nome FROM alunos WHERE id IN (
 SELECT FK_aluno_id FROM matriculas WHERE id IN (
 SELECT DISTINCT (FK_matricula_id) FROM avaliacoes WHERE nota >= 8)) ORDER BY nome;
+
 -- Turmas com pelo menos 5 matrículas. Mostre id.
+SELECT id FROM turmas WHERE(
+SELECT COUNT(*) FROM matriculas WHERE FK_turma_id = turmas.id) >= 5;
+-- GROUP BY
+SELECT FK_turma_id FROM matriculas GROUP BY FK_turma_id HAVING COUNT(*) >= 5;
 
 -- O curso cuja carga_horas é maior do que a média de todas as cargas.
+SELECT titulo, carga_horas FROM cursos WHERE carga_horas > (
+SELECT AVG(carga_horas) FROM cursos);
