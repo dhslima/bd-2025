@@ -22,10 +22,11 @@ CREATE TABLE turmas (
 
 CREATE TABLE matriculas (
   	id SERIAL PRIMARY KEY,
-  	FK_aluno_id INTEGER NOT NULL REFERENCES alunos(id),
+  	FK_aluno_id INTEGER,
   	FK_turma_id INTEGER,
   	data DATE NOT NULL,
   	status VARCHAR(20) NOT NULL,
+	FOREIGN KEY(FK_aluno_id) REFERENCES alunos(id)
 	FOREIGN KEY(FK_turma_id) REFERENCES turmas(id)
 );
 
