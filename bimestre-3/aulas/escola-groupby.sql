@@ -21,10 +21,14 @@ SELECT cidade, COUNT(*) AS qntd FROM alunos GROUP BY cidade HAVING COUNT(*) >= 2
 SELECT titulo FROM cursos WHERE id IN (SELECT DISTINCT FK_curso_id FROM turmas WHERE ano = 2025 GROUP BY FK_curso_id HAVING COUNT(*) > 1) ORDER BY titulo;
 
 -- Turmas com pelo menos 3 matrículas
+-- 1, 3, 5, 6
+SELECT FK_turma_id FROM matriculas GROUP BY FK_turma_id HAVING COUNT(*) >= 3 ORDER BY FK_turma_id;
 
 -- Matrículas com média >= 8.0
+SELECT FK_matricula_id FROM avaliacoes GROUP BY FK_matricula_id HAVING AVG(nota) >= 8 ORDER BY FK_matricula_id;
 
 -- Alunos com pelo menos 2 matrículas
+SELECT FK_aluno_id FROM matriculas GROUP BY FK_aluno_id HAVING COUNT(*) >= 2 ORDER BY FK_aluno_id;
 
 -- Tipos de avaliação com média >= 7.5
 SELECT tipo, ROUND(AVG(nota),2) AS media FROM avaliacoes GROUP BY tipo HAVING AVG(nota) >= 7.5 ORDER BY media DESC;
