@@ -16,8 +16,19 @@ SELECT a.nome, c.titulo, m.status FROM alunos a INNER JOIN matriculas m ON a.id 
 -- Alunos que estão matriculados em cursos da área “Dados”
 SELECT DISTINCT a.nome FROM alunos a INNER JOIN matriculas m ON a.id = m.FK_aluno_id INNER JOIN turmas t ON m.FK_turma_id = t.id INNER JOIN cursos c ON c.id = t.FK_curso_id WHERE c.area = 'Dados' ORDER BY a.nome;
 
-SELECT a.nome FROM alunos a INNER JOIN cursos c ON a.id = c.id WHERE c.area = 'Dados';
-
 -- Média de notas por aluno
+SELECT al.nome, ROUND(AVG(a.nota),2) AS Notas FROM avaliacoes a INNER JOIN matriculas m ON a.FK_matricula_id = m.id INNER JOIN alunos al ON al.id = m.FK_aluno_id GROUP BY al.id ORDER BY al.nome;
 
 -- Maior nota obtida em cada curso
+SELECT c.titulo, MAX(a.nota) FROM avaliacoes a INNER JOIN matriculas m ON a.FK_matricula_id = m.id INNER JOIN turmas t ON m.FK_turma_id = t.id INNER JOIN cursos c ON t.FK_curso_id = c.id GROUP BY c.id ORDER BY c.titulo;
+
+-- Alunos com média >= 8.0 considerando todas as suas avaliações
+SELECT a.nome, ROUND(AVG(av.nota),2) AS Media FROM alunos a INNER JOIN matriculas m ON a.id = m.FK_aluno_id INNER JOIN avaliacoes av ON m.id = av.FK_matricula_id GROUP BY a.id HAVING AVG(av.nota) >= 8 ORDER BY a.nome;
+
+-- Cursos com média geral >= 7.5 e pelo menos 5 avaliações lançadas
+
+-- Turmas de 2025 com ao menos 3 matrículas ativas
+
+-- Alunos com pelo menos 2 matrículas em cursos da área "Dados"
+
+-- Cidades com média de notas >= 7.0 (todas as avaliações dos alunos da cidade)
