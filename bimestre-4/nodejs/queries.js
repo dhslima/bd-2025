@@ -1,7 +1,3 @@
-// queries_demo.js
-// Exemplo prático de SELECTs, JOINs e agregações usando pool.query()
-// compatível com o esquema (alunos, cursos, turmas, matriculas, avaliacoes)
-
 import { pool } from "./db.js";
 
 async function selectBasico() {
