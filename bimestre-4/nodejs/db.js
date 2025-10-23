@@ -14,9 +14,3 @@ export const pool = new Pool({
     rejectUnauthorized: false, // permite certificado do servidor Neon
   },
 });
-
-// helper básico de query (parametrizada)
-export async function query(text, params) {
-  const res = await pool.query(text, params);
-  return res;
-}
