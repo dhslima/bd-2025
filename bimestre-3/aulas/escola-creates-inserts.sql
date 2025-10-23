@@ -26,7 +26,7 @@ CREATE TABLE matriculas (
   	FK_turma_id INTEGER,
   	data DATE NOT NULL,
   	status VARCHAR(20) NOT NULL,
-	FOREIGN KEY(FK_aluno_id) REFERENCES alunos(id)
+	FOREIGN KEY(FK_aluno_id) REFERENCES alunos(id),
 	FOREIGN KEY(FK_turma_id) REFERENCES turmas(id)
 );
 

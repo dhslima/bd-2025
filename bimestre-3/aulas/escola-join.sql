@@ -27,6 +27,7 @@ SELECT a.nome, ROUND(AVG(av.nota),2) AS Media FROM alunos a INNER JOIN matricula
 
 -- Cursos com média geral >= 7.5 e pelo menos 5 avaliações lançadas
 
+
 -- Turmas de 2025 com ao menos 3 matrículas ativas
 
 -- Alunos com pelo menos 2 matrículas em cursos da área "Dados"
