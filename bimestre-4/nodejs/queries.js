@@ -21,6 +21,12 @@ async function filtroComParametro() {
 
 async function join1N_TurmasCurso() {
   console.log("\n3) JOIN 1-N: turmas → cursos");
+  const r = await pool.query(`
+    SELECT t.*, c.* FROM turmas t
+    INNER JOIN cursos c ON t.fk_curso_id = c.id
+    ORDER BY t.id
+    `);
+  console.table(r.rows);
 }
 
 async function joinNM_MatriculasDetalhe() {
