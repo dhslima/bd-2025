@@ -58,18 +58,55 @@ async function notasPorMatricula() {
 
 async function mediaPorAluno() {
   console.log("\n6) Média por aluno");
+  const r = await pool.query(`
+      SELECT a.nome AS aluno, ROUND(AVG(av.nota),2) AS media
+      FROM avaliacoes av
+      INNER JOIN matriculas m ON av.fk_matricula_id = m.id
+      INNER JOIN alunos a ON m.fk_aluno_id = a.id
+      GROUP BY a.id
+      ORDER BY AVG(av.nota) DESC;  
+    `);
+  console.table(r.rows);
 }
 
 async function mediaPorCurso() {
   console.log("\n7) Média por curso");
+  const r = await pool.query(`
+    SELECT c.titulo AS curso, ROUND(AVG(av.nota),2) AS media
+    FROM avaliacoes av
+    INNER JOIN matriculas m ON av.fk_matricula_id = m.id
+    INNER JOIN turmas t ON m.fk_turma_id = t.id
+    INNER JOIN cursos c ON t.fk_curso_id = c.id
+    GROUP BY c.id
+    ORDER BY AVG(av.nota) DESC;
+    `);
+  console.table(r.rows);
 }
 
 async function rankingTop5Alunos() {
   console.log("\n8) TOP 5 alunos por média geral");
+  const r = await pool.query(`
+    SELECT a.nome AS aluno, ROUND(AVG(av.nota),2) AS media
+      FROM avaliacoes av
+      INNER JOIN matriculas m ON av.fk_matricula_id = m.id
+      INNER JOIN alunos a ON m.fk_aluno_id = a.id
+      GROUP BY a.id
+      ORDER BY AVG(av.nota) DESC LIMIT 5; 
+    `);
+  console.table(r.rows);
 }
 
 async function matriculasAtivasPorSemestre() {
   console.log("\n9) Matrículas ATIVAS por ano /semestre");
+  const r = await pool.query(`
+    SELECT t.ano, t.semestre, COUNT(*) AS total_matriculas_ativas
+    FROM matriculas m
+    INNER JOIN turmas t ON m.fk_turma_id = t.id
+    WHERE m.status = 'ativa'
+    GROUP BY t.ano, t.semestre
+    ORDER BY t.ano, t.semestre;
+    `);
+  console.table(r.rows);
 }
 
 async function run() {
