@@ -16,3 +16,7 @@ config/config.json # vamos substituir por config.js
 models/
 migrations/
 seeders/
+
+# para executar
+
+npm run dev
