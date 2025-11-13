@@ -1,3 +1,5 @@
+Criem uma pasta para o projeto e entrem nela. Então executem:
+
 npm init -y
 
 # dependências
