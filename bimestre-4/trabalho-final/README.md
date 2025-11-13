@@ -12,9 +12,12 @@ npx sequelize-cli init
 
 # Isso criará
 
-config/config.json # vamos substituir por config.js
+config/config.json
+
 models/
+
 migrations/
+
 seeders/
 
 # para executar
