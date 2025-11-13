@@ -22,6 +22,6 @@ migrations/
 
 seeders/
 
-# para executar
+# para executar o exemplo, dentro da pasta trabalho-final executem
 
 npm run dev
